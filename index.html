@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FarmaCare - mockup</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>FarmaCare</h1>
+    <p>Sistem de evidență a stocului de medicamente în farmacie.</p>
+    <p class="app-count">3 medicamente, dintre care 2 în stoc</p>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Adaugă medicament</h2>
+      <form class="item-form">
+        <label>Nume medicament <input type="text" name="titlu" placeholder="Ex: Paracetamol 500mg" /></label>
+        <label>Tip eliberare
+          <select name="eticheta">
+            <option value="otc">OTC / Fără rețetă</option>
+            <option value="reteta">Cu Rețetă</option>
+            <option value="supliment">Supliment alimentar</option>
+          </select>
+        </label>
+        <button type="submit">Adaugă</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Inventar medicamente</h2>
+      <!-- Când lista e goală: <p class="empty">Nu există niciun element.</p> -->
+      <ul class="item-list">
+        <li class="item-card">
+          <div>
+            <h3>Paracetamol 500mg</h3>
+            <span class="badge badge-otc">OTC</span>
+          </div>
+          <span class="status">În stoc</span>
+        </li>
+
+        <li class="item-card done">
+          <div>
+            <h3>Amoxicilină 500mg</h3>
+            <span class="badge badge-reteta">Rețetă</span>
+          </div>
+          <span class="status">Epuizat</span>
+        </li>
+
+        <li class="item-card">
+          <div>
+            <h3>Nurofen Express</h3>
+            <span class="badge badge-otc">OTC</span>
+          </div>
+          <span class="status">În stoc</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="app-footer">Proiect Tehnologii Web</footer>
+</body>
+</html>

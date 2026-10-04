@@ -22,7 +22,7 @@ Open `index.html` in a browser. No build step, no server.
 ## AI usage
 | Tool | Used for |
 | -------------- | ----------------------------------------- |
-| Gemini | Stage 1 setup, HTML/CSS layout guidance, README structure |
+| | Stage 1 setup, HTML/CSS layout guidance, README structure |
 Details per stage: see the `ai-log/` folder.
 
 ## Status
