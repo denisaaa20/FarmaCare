@@ -64,7 +64,7 @@ function stergeTask(lista, id) {
   return lista.filter((t) => t.id !== id);
 }
 
-// Pasul 8: Testele din consolă
+//teste consola
 console.log("--- Citire ---");
 console.log("Titluri:", listeazaTitluri(medicamente).join(", "));
 console.log("Active (în stoc):", numaraActive(medicamente));

@@ -25,6 +25,13 @@ Open `index.html` in a browser. No build step, no server.
 | | Stage 1 setup, HTML/CSS layout guidance, README structure |
 Details per stage: see the `ai-log/` folder.
 
+
+## Stage 2: data logic
+Plain JavaScript, no DOM.
+`medicamente.js` holds the array and the functions that read and change it. 
+Results are printed in the browser console (F12).
+
 ## Status
 - [x] Stage 1: static mockup
-- [ ] Stage 2: data logic in JavaScript
+- [x] Stage 2: data logic in JavaScript
+- [] Stage 3: Vite and React project
