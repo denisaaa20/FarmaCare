@@ -1,3 +1,5 @@
+import MedicamentList from "./components/MedicamentList.jsx";
+
 const medicamente = [
   { id: 1, titlu: "Paracetamol 500mg", in_stock: true, eticheta: "otc" },
   { id: 2, titlu: "Amoxicilina 500mg", in_stock: false, eticheta: "reteta" },
@@ -20,8 +22,7 @@ export default function App() {
       <main className="container">
         <section className="panel">
           <h2>Inventar medicamente</h2>
-          {/* Temporar: date brute; componentele apar în Etapa 4 */}
-          <pre>{JSON.stringify(medicamente, null, 2)}</pre>
+          <MedicamentList medicamente={medicamente} />
         </section>
       </main>
     </>
