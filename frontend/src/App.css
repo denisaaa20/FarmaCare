@@ -1,115 +1,97 @@
-* {
-  box-sizing: border-box;
+
+/* 1. Tema implicită (Luminoasă - roz) */
+:root,
+:root[data-theme="light"] {
+  --bg: #fff0f7;
+  --card: #ffffff;
+  --text: #831843;
+  --muted: #9d6b83;
+  --border: #f3b4d2;
+  --accent: #ec4899;
+  --accent-soft: #fce7f3;
+  --mare: #e11d48;
+  --shadow: 0 4px 6px -1px rgba(236, 72, 153, 0.12);
 }
 
-:root {
-  --bg: #fff5f7;            
-  --card: #ffffff;          
-  --text: #2d1a24;          
-  --muted: #8a6b7c;        
-  
-  --accent: #d946ef;        
-  --accent-dark: #c026d3;   
-  --accent-soft: #fdf2f8;   
-  --border: #fbcfe8;        
-
-  --badge-otc: #10b981;       
-  --badge-reteta: #e11d48;    
-  --badge-supliment: #f59e0b; 
+/* 2. Tema sistemului (dacă utilizatorul nu a ales explicit tema luminoasă) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #21101d;
+    --card: #35172d;
+    --text: #fce7f3;
+    --muted: #d8a5c1;
+    --border: #71365c;
+    --accent: #ec4899;
+    --accent-soft: #51213f;
+    --mare: #fb7185;
+    --shadow: none;
+  }
 }
 
+/* 3. Tema întunecată (selectată din buton) */
+:root[data-theme="dark"] {
+  --bg: #21101d;
+  --card: #35172d;
+  --text: #fce7f3;
+  --muted: #d8a5c1;
+  --border: #71365c;
+  --accent: #ec4899;
+  --accent-soft: #51213f;
+  --mare: #fb7185;
+  --shadow: none;
+}
+
+/* Stiluri generale pagină */
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
-  background: var(--bg);
+  background-color: var(--bg);
   color: var(--text);
-  line-height: 1.5;
+  font-family: system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .app-header {
-  background: linear-gradient(135deg, #ec4899, #d946ef); 
-  color: white;
+  position: relative;
+  background: linear-gradient(135deg, #ec4899, #8b5cf6);
+  color: #ffffff;
+  padding: 40px 20px;
   text-align: center;
-  padding: 32px 16px;
 }
 
-.app-header h1 {
-  margin: 0 0 8px 0;
+.theme-toggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 6px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
 }
 
-.app-header p {
-  margin: 4px 0;
-}
-
-.app-count {
-  font-weight: 500;
-  opacity: 0.95;
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .container {
-  max-width: 1000px;
-  margin: 24px auto;
-  padding: 0 16px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-  align-items: start;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 0 20px;
 }
 
 .panel {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 6px -1px rgba(217, 70, 239, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow);
 }
 
-.panel h2 {
-  margin-top: 0;
-  font-size: 1.25rem;
-  color: #a21caf;
-}
-
-.item-form,
-.item-form label {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.item-form {
-  gap: 16px;
-}
-
-.item-form input,
-.item-form select {
-  padding: 10px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 1rem;
-}
-
-.item-form input:focus,
-.item-form select:focus {
-  border-color: var(--accent);
-}
-
-.item-form button {
-  background: var(--accent);
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.item-form button:hover {
-  background: var(--accent-dark);
-}
-
-.item-list {
+/* Aliniere listă și carduri */
+.task-list {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -118,74 +100,94 @@ body {
   gap: 12px;
 }
 
-.item-card {
+.task-card {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 14px 16px;
+  justify-content: space-between;
+  padding: 16px;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 12px;
   background: var(--card);
-  transition: border-color 0.2s, background-color 0.2s;
+  color: var(--text);
 }
 
-.item-card:hover {
-  border-color: var(--accent);
-  background-color: var(--accent-soft);
+.task-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
 }
 
-.item-card h3 {
-  margin: 0 0 6px 0;
-  font-size: 1rem;
+.task-main input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* Tăiere text când caseta este bifată */
+.medicament-card.done h3 {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+/* Cardul medicamentului */
+.medicament-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  margin-bottom: 14px;
+}
+
+/* Checkbox + titlu + etichetă */
+.medicament-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+}
+
+/* Butonul rămâne în dreapta */
+.btn-danger {
+  margin-left: auto;
+  flex-shrink: 0;
+  border: 2px solid var(--mare);
+  background: transparent;
+  color: var(--mare);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-danger:hover {
+  background: var(--mare);
+  color: #ffffff;
 }
 
 .badge {
   display: inline-block;
   padding: 2px 8px;
-  border-radius: 12px;
   font-size: 0.75rem;
-  color: white;
   font-weight: 600;
+  border-radius: 12px;
+  text-transform: uppercase;
 }
 
-.badge-otc { background: var(--badge-otc); }
-.badge-reteta { background: var(--badge-reteta); }
-.badge-supliment { background: var(--badge-supliment); }
-
-.item-card.done h3 {
-  text-decoration: line-through;
-  color: var(--muted);
+.badge-otc {
+  background: #10b981;
+  color: #ffffff;
 }
 
-.item-card.done .status {
-  color: var(--muted);
-}
-
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-.app-footer {
-  text-align: center;
-  padding: 24px;
-  color: var(--muted);
-  font-size: 0.875rem;
-}
-
-@media (max-width: 700px) {
-  .container {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #1f111a;
-    --card: #2d1827;
-    --text: #fdf2f8;
-    --muted: #f472b6;
-    --border: #701a75;
-    --accent-soft: #4c1d95;
-  }
-}
+.badge-reteta {
+  background: #ef4444;
+  color: #ffffff;

@@ -1,20 +1,23 @@
-# Stage 1: AI log
+# Stage 5: AI log
 
 ## Tools
-- ChatGPT
+- ChatGPT 
 
 ## Conversations
 - https://chatgpt.com/c/6ac166a2-13f8-83eb-91e5-2cc3f9a89e1e
 
 ## Key requests
-### 1. Choosing pink shades in CSS
-- Asked: How can I use different shades of pink in `style.css` so the website looks nice and readable?
-- Got: I learned how to define color variables in `:root` for background, buttons, and borders.
-- Changed or rejected: I picked a pink gradient for the header and a light pink background for the page.
+### 1. Fixing strikethrough logic on checked items
+- Asked: How to make the text line-through when the checkbox is checked, because initially it was working in reverse?
+- Got: I learned how to adjust the `className` logic in `MedicamentCard.jsx` based on the item's checked state (`in_stock`).
+- Changed or rejected: Applied `task-card done` when `in_stock` is true so the text crosses out only when checked.
+
+### 2. Resolving light/dark mode switching
+- Asked: How to fix the theme switcher so it toggles properly, because dark mode was being applied in both variants?
+- Got: I learned how to handle CSS selector precedence (`:root:not([data-theme="light"])`) and correctly update `dataset.theme` on the root element.
+- Changed or rejected: Updated both `App.jsx` and `App.css` to allow smooth switching between light and dark themes.
 
 ## What I learned / what did not work
 
-I created the HTML structure, Git setup, and README.
-I asked the AI for help with picking matching pink colors in CSS.
-I learned how to use CSS variables in `:root` and change button colors on hover.
-At first, some pink colors were too light, so I picked darker shades for text to make it easy to read.
+I used AI to help me with the code so that when the checkbox is checked, the text gets crossed out (since initially it was working in reverse).
+I also used it for the light/dark mode part, because it was applying dark mode on both variants instead of toggling properly.
