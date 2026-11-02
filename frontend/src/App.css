@@ -1,5 +1,5 @@
 
-/* 1. Tema implicită (Luminoasă - roz) */
+/* Tema implicită (Luminoasă - roz) */
 :root,
 :root[data-theme="light"] {
   --bg: #fff0f7;
@@ -13,7 +13,7 @@
   --shadow: 0 4px 6px -1px rgba(236, 72, 153, 0.12);
 }
 
-/* 2. Tema sistemului (dacă utilizatorul nu a ales explicit tema luminoasă) */
+/* Tema sistemului (dacă utilizatorul nu a ales explicit tema luminoasă) */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #21101d;
@@ -28,7 +28,7 @@
   }
 }
 
-/* 3. Tema întunecată (selectată din buton) */
+/* Tema întunecată (selectată din buton) */
 :root[data-theme="dark"] {
   --bg: #21101d;
   --card: #35172d;
@@ -191,3 +191,19 @@ body {
 .badge-reteta {
   background: #ef4444;
   color: #ffffff;
+}
+
+/* Etapa 6: stări de încărcare și de eroare */
+.info {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.error {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid #ef4444;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-weight: 500;
+}

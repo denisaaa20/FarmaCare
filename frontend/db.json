@@ -1,0 +1,34 @@
+{
+  "medicamente": [
+    {
+      "id": 1,
+      "titlu": "Paracetamol 500mg",
+      "in_stock": true,
+      "eticheta": "otc"
+    },
+    {
+      "id": 2,
+      "titlu": "Amoxicilina 500mg",
+      "in_stock": false,
+      "eticheta": "reteta"
+    },
+    {
+      "id": 3,
+      "titlu": "Nurofen Express",
+      "in_stock": true,
+      "eticheta": "otc"
+    },
+    {
+      "id": 4,
+      "titlu": "Algocalmin 500mg",
+      "in_stock": true,
+      "eticheta": "reteta"
+    },
+    {
+      "id": 5,
+      "titlu": "Vitamin C 1000mg",
+      "in_stock": false,
+      "eticheta": "otc"
+    }
+  ]
+}

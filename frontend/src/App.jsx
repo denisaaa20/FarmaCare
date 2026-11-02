@@ -1,19 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MedicamentList from "./components/MedicamentList.jsx";
-
-const MEDICAMENTE_INITIALE = [
-  { id: 1, titlu: "Paracetamol 500mg", in_stock: true, eticheta: "otc" },
-  { id: 2, titlu: "Amoxicilina 500mg", in_stock: false, eticheta: "reteta" },
-  { id: 3, titlu: "Nurofen Express", in_stock: true, eticheta: "otc" }
-];
+import { fetchMedicamente } from "./api.js";
 
 function temaInitiala() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
 export default function App() {
-  const [medicamente, setMedicamente] = useState(MEDICAMENTE_INITIALE);
+  const [medicamente, setMedicamente] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [tema, setTema] = useState(temaInitiala);
+
+  useEffect(() => {
+    let ignore = false;
+
+    async function load() {
+      try {
+        const data = await fetchMedicamente();
+        if (!ignore) setMedicamente(data);
+      } catch (err) {
+        if (!ignore) setError(err.message);
+      } finally {
+        if (!ignore) setLoading(false);
+      }
+    }
+
+    load();
+
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   function handleToggle(id) {
     setMedicamente((prev) =>
@@ -53,11 +71,22 @@ export default function App() {
       <main className="container">
         <section className="panel">
           <h2>Inventar medicamente</h2>
-          <MedicamentList
-            medicamente={medicamente}
-            onToggle={handleToggle}
-            onDelete={handleDelete}
-          />
+
+          {loading && <p className="info">Se încarcă lista de medicamente...</p>}
+
+          {error && (
+            <p className="error">
+              Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
+            </p>
+          )}
+
+          {!loading && !error && (
+            <MedicamentList
+              medicamente={medicamente}
+              onToggle={handleToggle}
+              onDelete={handleDelete}
+            />
+          )}
         </section>
       </main>
     </>
